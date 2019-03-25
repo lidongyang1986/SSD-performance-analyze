@@ -16,3 +16,6 @@ DIE/LUN是接收和执行FLASH命令的基本单元。上图中，LUN0和LUN1可
 闪存基础原理：
 http://www.ssdfans.com/blog/2017/08/03/%E9%97%AA%E5%AD%98%E5%9F%BA%E7%A1%80/
 http://www.ssdfans.com/blog/2017/08/03/ssd%E8%83%8C%E5%90%8E%E7%9A%84%E7%A7%98%E5%AF%86%EF%BC%9Assd%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/
+
+
+WL有两种算法：动态WL和静态WL。所谓动态WL，就是在使用Block进行擦写操作的时候，优先挑选PE 数低的；所谓静态WL，就是把长期没有修改的老数据（如前面提到的只读文件数据）从PE数低的Block当中搬出来，然后找个PE 数高的Block进行存放，这样，之前低PE数的Block就能拿出来使用。
