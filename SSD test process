@@ -4,3 +4,7 @@ http://www.ssdfans.com/blog/2019/02/25/%E6%84%8F%E5%A4%A7%E5%88%A9nplust%E5%85%A
 http://www.ssdfans.com/blog/category/technical-article/ssd/page/47/
 DIE/LUN是接收和执行FLASH命令的基本单元。上图中，LUN0和LUN1可以同时接收和执行不同的命令。但在一个LUN当中，一次只能执行一个命令，你不能对其中的某个Page写的同时，又对其他Page进行读访问。
 一个LUN又分为若干个Plane，一般为1个或者2个，现在也有4个Plane的NAND了。每个Plane都有自己独立的Cache Register或者 Page Register，一般情况下，两个Register内容都是一样的，其大小等于一个Page的大小。Host在写某个Page的时候，它是先把数据从Host传输到该Page所对应Plane的Cache Register当中，然后再把整个Cache Register当中的数据写到NAND FLASH阵列；读的时候类似，它先把这个Page的数据从FLASH阵列读取到Page Register，然后再按需传给host。这里按需是什么意思？就是我们读取数据的时候，没有必要把整个Page的数据都传出来给Host，按需选择数据传输。但要记住，无论是从FLASH 阵列读数据到Page Register，还是把Page Register的数据写入FLASH阵列，都是以Page为单位！
+
+
+对MLC来说，擦除一个Block的时间大概是几个毫秒。 NAND FLASH的读写则是以Page为基本单元的。一个Page大小主要有4KB,8KB,16KB。对MLC或者TLC来说，
+写一个Block当中的Page，应该顺序写：Page0，Page1，Page2，Page3，…；禁止随机写入，比如：Page2，Page3，Page5，Page0，…，这是不允许的。
