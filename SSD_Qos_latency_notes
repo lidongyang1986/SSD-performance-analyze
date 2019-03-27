@@ -1,0 +1,14 @@
+NVM Sets
+▪ New NVMe feature called:
+I/O Determinism
+
+▪ SSD is configured as multiple
+NVM Sets (e.g. A, B, C)
+
+▪ NVM Sets are QoS isolated regions
+
+▪ A write to Set A does not impact a read
+to Set B or C
+
+▪ One or more namespaces are
+allocated from an NVM Set
